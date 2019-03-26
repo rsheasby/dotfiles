@@ -110,6 +110,7 @@ nnoremap <A-j> gj
 nnoremap <A-k> gk
 
 nnoremap <C-d> :Bdelete<CR>
+nnoremap <A-d> :Bdelete!<CR>
 nnoremap <A-w> :q<CR>
 
 nnoremap <C-g> g<C-]>
