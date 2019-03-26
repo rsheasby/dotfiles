@@ -123,6 +123,8 @@ vnoremap > >gv
 
 nmap ; :
 
+nnoremap ` ~h
+
 map <Leader> <Plug>(easymotion-prefix)
 
 " Copy to system clipboard when command preceeded by the leader key
@@ -187,6 +189,7 @@ set confirm
 "                                                                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:dispatch_no_maps = 1
 let g:ctab_filetype_maps = 1
 let g:nvim_typescript#javascript_support = 1
 let g:airline_powerline_fonts = 1
