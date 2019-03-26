@@ -23,14 +23,13 @@ Plug 'junegunn/fzf'                                        " A command-line fuzz
 Plug 'junegunn/fzf.vim'                                    " fzf vim
 Plug 'junegunn/seoul256.vim'                               " Low-contrast Vim color scheme based on Seoul Colors
 Plug 'leafgarland/typescript-vim'                          " Typescript syntax files for Vim
-" Plug 'ludovicchabant/vim-gutentags'                        " A Vim plugin that manages your tag files
 Plug 'mattn/emmet-vim'                                     " emmet for vim: http://emmet.io/
 Plug 'moll/vim-bbye'                                       " Delete buffers and close files in Vim without closing your windows or messing up your layout.
+Plug 'nathanaelkane/vim-indent-guides'                     " A Vim plugin for visually displaying indent levels in code
 Plug 'pangloss/vim-javascript'                             " Vastly improved Javascript indentation and syntax support in Vim.
 Plug 'Raimondi/delimitMate'                                " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
 Plug 'scrooloose/nerdtree'                                 " A tree explorer plugin for vim.
 Plug 'skywind3000/gutentags_plus'                          " The right way to use gtags with gutentags
-Plug 'thaerkh/vim-indentguides'                            " Simple indentation guides for your buffers
 Plug 'tpope/vim-abolish'                                   " abolish.vim: easily search for, substitute, and abbreviate multiple variants of a word
 Plug 'tpope/vim-commentary'                                " commentary.vim: comment stuff out
 Plug 'tpope/vim-dispatch'                                  " dispatch.vim: Asynchronous build and test dispatcher
@@ -193,11 +192,11 @@ let g:nvim_typescript#javascript_support = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#ale#enabled = 1
 let g:nerdtree_open_cmd = 'open'
-let g:indentLine_enabled = 1
-let g:indentLine_setColors = 0
+let g:vim_json_syntac_conceal = 0
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#max_list = 7
 let g:python3_host_prog = 'C:\Program Files (x86)\Python37-32\python.exe'
 let delimitMate_expand_cr = 1
 let delimitMate_matchpairs = '(:),[:],{:}'
 let delimitMate_quotes = "\" ' ``'"
+let g:indent_guides_enable_on_vim_startup = 1
