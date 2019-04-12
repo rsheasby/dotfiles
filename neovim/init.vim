@@ -141,6 +141,9 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
 " Comment toggle using Ctrl-/
+vmap <C-_> gcgv
+nmap <C-_> gcc
+
 vmap <C-/> gcgv
 nmap <C-/> gcc
 
@@ -177,6 +180,7 @@ set linebreak
 set updatetime=100
 set undofile
 set undodir=~/.config/nvim/undodir
+set backupdir=~/.vim/backups
 set ignorecase
 set smartcase
 set cursorline
@@ -203,4 +207,6 @@ let g:python3_host_prog = 'C:\Program Files (x86)\Python37-32\python.exe'
 let delimitMate_expand_cr = 1
 let delimitMate_matchpairs = '(:),[:],{:}'
 let delimitMate_quotes = "\" ' ``'"
+let g:ale_lint_on_enter = 0
+let g:ale_echo_msg_format = '%linter% reports %s'
 let g:indent_guides_enable_on_vim_startup = 1
