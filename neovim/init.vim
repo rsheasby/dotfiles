@@ -62,20 +62,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 autocmd FileType nerdtree
 			\ nnoremap <buffer> <ESC> <C-w><C-w>|
 			\ nmap <buffer> <C-p> <ESC>|
-			\ nmap <buffer> <C-b> <ESC><C-b>|
-			\ nmap <buffer> <C-n> <ESC><C-n>|
+			\ nmap <buffer> <C-h> <ESC><C-h>|
+			\ nmap <buffer> <C-l> <ESC><C-l>|
 			\ nmap <buffer> <C-d> <ESC><C-d>|
 			\ nmap <buffer> <C-f> <ESC><C-f>|
 			\ nnoremap <buffer> o :call NERDTreeExecFile()<CR><CR><CR>|
 			\ nnoremap <buffer> O :call NERDTreeExecFile()<CR><Home>explorer /select,<CR><CR>
-
-autocmd FileType lisp
-			\ vnoremap <buffer> <leader>xa :!boxes -d lisp_plain -a hc -s 80<CR>|
-			\ vnoremap <buffer> <leader>xr :!boxes  -r -d lisp_plain -a hc -s 80<CR>
-
-autocmd FileType vim
-			\ vnoremap <buffer> <leader>xa :!boxes -d vim-box -a hc -s 80<CR>|
-			\ vnoremap <buffer> <leader>xr :!boxes  -r -d vim-box -a hc -s 80<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                                                              "
