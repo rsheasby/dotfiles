@@ -98,6 +98,8 @@ let g:comfortable_motion_air_drag = 2.0
 noremap <C-h> :bprev<CR>
 noremap <C-l> :bnext<CR>
 
+vnoremap <A-j> gj
+vnoremap <A-k> gk
 nnoremap <A-j> gj
 nnoremap <A-k> gk
 
@@ -165,6 +167,7 @@ set softtabstop=0
 set shiftwidth=2
 set tabstop=2
 set cindent
+set breakindent
 set mouse=a
 set number
 set relativenumber
