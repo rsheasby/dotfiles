@@ -122,13 +122,14 @@ vmap ; :
 
 nnoremap ` ~h
 
+map - $
+
 map <Leader> <Plug>(easymotion-prefix)
 
 " Copy to system clipboard when command preceeded by the leader key
-vnoremap  <leader>y  "+y
-nnoremap  <leader>Y  "+yg_
-nnoremap  <leader>y  "+y
-nnoremap  <leader>yy  "+yy
+vnoremap <leader>y  "+y
+nnoremap <leader>Y  "+yg_
+nnoremap <leader>y  "+y
 
 " Paste from system clipboard when command preceeded by the leader key
 nnoremap <leader>p "+p
