@@ -189,6 +189,7 @@ set foldmethod=indent
 set foldlevelstart=999
 set confirm
 set updatetime=500
+set inccommand=nosplit
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                                                              "
