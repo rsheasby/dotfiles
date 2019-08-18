@@ -4,11 +4,13 @@
 (setq-default truncate-lines nil)
 (setq word-wrap t)
 (setq-default select-enable-clipboard nil)
+(setq-default org-export-preserve-breaks t)
 (evil-escape-mode -1)
 (add-hook! markdown-mode
   (auto-fill-mode -1))
 (after! evil-snipe
   (evil-snipe-mode -1))
+(remove-hook 'org-mode-hook #'auto-fill-mode)
 
 (map! :map evil-treemacs-state-map "<ESC>" #'evil-window-next)
 
