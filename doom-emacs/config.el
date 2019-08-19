@@ -2,6 +2,7 @@
 
 ;; Place your private configuration here
 (setq-default truncate-lines nil)
+(setq scroll-margin 7)
 (setq word-wrap t)
 (setq-default select-enable-clipboard nil)
 (setq-default org-export-preserve-breaks t)
@@ -49,6 +50,12 @@
                        (evil-use-register ?+)
                        (call-interactively 'evil-paste-before)
                        ))
+(map! :nv (kbd "\\j") #'avy-goto-line-below)
+(map! :nv (kbd "\\k") #'avy-goto-line-above)
+(map! :nv (kbd "\\w") #'avy-goto-word-0-below)
+(map! :nv (kbd "\\b") #'avy-goto-word-0-above)
+(map! :nv (kbd "\\f") #'avy-goto-char-in-line)
+(map! :nv (kbd "\\s") #'avy-goto-char-2)
 
 (map! :map org-mode-map
       :localleader
