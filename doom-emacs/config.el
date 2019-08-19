@@ -1,11 +1,13 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here
+(setq doom-font (font-spec :family "Hack" :size 14))
 (setq-default truncate-lines nil)
 (setq scroll-margin 7)
 (setq word-wrap t)
 (setq-default select-enable-clipboard nil)
 (setq-default org-export-preserve-breaks t)
+(setq undo-tree-auto-save-history t)
 (evil-escape-mode -1)
 (add-hook! markdown-mode
   (auto-fill-mode -1))
@@ -13,11 +15,25 @@
   (evil-snipe-mode -1))
 (remove-hook 'org-mode-hook #'auto-fill-mode)
 
-(map! :map evil-treemacs-state-map "<ESC>" #'evil-window-next)
+(def-package! inertial-scroll
+  :commands (
+             inertias-up
+             inertias-down
+             ))
+
+(setq inertias-initial-velocity 75)
+(setq inertias-friction 135)
+(setq inertias-update-time 10)
+(setq inertias-rest-coef 0.1)
+(map! :nv "C-j" #'inertias-up)
+(map! :nv "C-k" #'inertias-down)
 
 (map! :nv ";" #'evil-ex)
 (map! :nvo "-" #'evil-end-of-line)
+
+(map! :map evil-treemacs-state-map "<ESC>" #'evil-window-next)
 (map! :nvo (kbd "C-p") 'treemacs-select-window)
+
 (map! :n (kbd "`") (lambda () (interactive)
                      (call-interactively 'evil-invert-char)
                      (evil-backward-char 1)
