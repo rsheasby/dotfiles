@@ -14,6 +14,8 @@
 (after! evil-snipe
   (evil-snipe-mode -1))
 (remove-hook 'org-mode-hook #'auto-fill-mode)
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+
 
 (def-package! inertial-scroll
   :commands (
@@ -25,6 +27,10 @@
 (setq inertias-friction 135)
 (setq inertias-update-time 10)
 (setq inertias-rest-coef 0.1)
+
+(setq tex-open-quote "\"")
+(setq tex-close-quote "\"")
+
 (map! :nv "C-j" #'inertias-up)
 (map! :nv "C-k" #'inertias-down)
 
@@ -72,6 +78,8 @@
 (map! :nv (kbd "\\b") #'avy-goto-word-0-above)
 (map! :nv (kbd "\\f") #'avy-goto-char-in-line)
 (map! :nv (kbd "\\s") #'avy-goto-char-2)
+(map! :nv "M-j" #'evil-next-visual-line)
+(map! :nv "M-k" #'evil-previous-visual-line)
 
 (map! :map org-mode-map
       :localleader
