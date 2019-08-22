@@ -28,14 +28,23 @@
 (setq inertias-update-time 10)
 (setq inertias-rest-coef 0.1)
 
-(setq tex-open-quote "\"")
-(setq tex-close-quote "\"")
 
 (map! :nv "C-j" #'inertias-up)
 (map! :nv "C-k" #'inertias-down)
 
 (map! :nv ";" #'evil-ex)
 (map! :nvo "-" #'evil-end-of-line)
+
+(map! :map tex-mode-map
+      :i "\"" 'self-insert-command)
+
+(after! smartparens-latex
+  (sp-local-pair '(
+                   tex-mode
+                   plain-tex-mode
+                   latex-mode
+                   LaTeX-mode
+                   ) "``" "''" :actions :rem))
 
 (map! :map evil-treemacs-state-map "<ESC>" #'evil-window-next)
 (map! :nvo (kbd "C-p") 'treemacs-select-window)
