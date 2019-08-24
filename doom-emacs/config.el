@@ -2,8 +2,8 @@
 
 ;; Place your private configuration here
 (setq doom-font (font-spec :family "Hack" :size 14))
-(setq-default truncate-lines nil)
 (setq scroll-margin 7)
+(setq-default truncate-lines nil)
 (setq word-wrap t)
 (setq-default select-enable-clipboard nil)
 (setq-default org-export-preserve-breaks t)
@@ -15,7 +15,7 @@
   (evil-snipe-mode -1))
 (remove-hook 'org-mode-hook #'auto-fill-mode)
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
-
+(setq org-startup-truncated nil)
 
 (def-package! inertial-scroll
   :commands (
