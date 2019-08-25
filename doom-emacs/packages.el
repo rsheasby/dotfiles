@@ -7,3 +7,5 @@
 ;; (package! builtin-package :disable t)
 (package! ox-twbs)
 (package! inertial-scroll :recipe (:fetcher github :repo "kiwanami/emacs-inertial-scroll"))
+(package! centaur-tabs)
+(package! go-rename)

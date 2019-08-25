@@ -22,12 +22,19 @@
              inertias-up
              inertias-down
              ))
+(def-package! go-rename :commands (go-rename))
+(map! :nvo "C-c C-r" #'go-rename)
 
 (setq inertias-initial-velocity 75)
 (setq inertias-friction 135)
 (setq inertias-update-time 10)
 (setq inertias-rest-coef 0.1)
+(centaur-tabs-mode t)
+(map! :nvo "C-h" #'centaur-tabs-backward)
+(map! :nvo "C-l" #'centaur-tabs-forward)
+(map! :nvo "C-d" #'kill-current-buffer)
 
+(setq help-char nil)
 
 (map! :nv "C-j" #'inertias-up)
 (map! :nv "C-k" #'inertias-down)
