@@ -11,11 +11,16 @@
 (evil-escape-mode -1)
 (add-hook! markdown-mode
   (auto-fill-mode -1))
+(add-hook! 'org-mode-hook 'turn-on-flyspell)
+(add-hook! 'tex-mode-hook 'turn-on-flyspell)
+(add-hook! 'LaTeX-mode-hook 'turn-on-flyspell)
+(add-hook! 'latex-mode-hook 'turn-on-flyspell)
 (after! evil-snipe
   (evil-snipe-mode -1))
 (remove-hook 'org-mode-hook #'auto-fill-mode)
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 (setq org-startup-truncated nil)
+(setq display-line-numbers-type 'relative)
 
 (def-package! inertial-scroll
   :commands (
