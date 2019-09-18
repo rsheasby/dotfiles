@@ -1,5 +1,5 @@
 " init.vim 2 electric boogaloo
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin()
 
 " Tim Pope bae
 Plug 'tpope/vim-dispatch'
@@ -13,15 +13,13 @@ Plug 'tpope/vim-speeddating'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'easymotion/vim-easymotion'
-Plug 'itchyny/lightline.vim'
-Plug 'rakr/vim-one'
-Plug 'easymotion/vim-easymotion'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
 Plug 'Raimondi/delimitMate'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'wellle/targets.vim'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'airblade/vim-gitgutter'
-Plug 'ap/vim-buftabline'
 Plug 'moll/vim-bbye'
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go'
@@ -29,24 +27,30 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Shougo/echodoc.vim'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
 " Plugin Options
+
+let g:ale_lint_on_enter = 0
+autocmd BufRead * ALELint
+
 let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 0
 
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 
 let g:echodoc#enable_at_startup = 1
 
-let g:one_allow_italics = 1
-colorscheme one
-set background=dark
+let g:onedark_hide_endofbuffer=1
+let g:onedark_terminal_italics=1
+colorscheme onedark
 
-let g:lightline = {
-      \ 'colorscheme': 'one',
-      \ }
+let g:airline_theme='onedark'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -64,6 +68,8 @@ autocmd FileType nerdtree
 			\ nnoremap <buffer> O :call NERDTreeExecFile()<CR><Home>explorer /select,<CR><CR>
 
 " Plugin Keymaps
+
+map <C-c><C-r> :GoRename<CR>
 
 map <C-p> :NERDTreeFocus<CR>
 
@@ -98,7 +104,8 @@ imap <C-j> <C-n>
 imap <C-k> <C-p>
 
 nmap <SPACE>fs :w<CR>
-nmap <SPACE>qq :q<CR>
+nmap <SPACE>qq :qa<CR>
+nmap <SPACE>qw :q<CR>
 
 nmap ; :
 
@@ -123,6 +130,15 @@ nmap <C-/> gcc
 
 nmap <C-d> :Bdelete<CR>
 
+nnoremap < <<
+nnoremap > >>
+vnoremap < <gv
+vnoremap > >gv
+
+nnoremap <silent> <ESC> :noh<CR><ESC>
+
+nnoremap ` ~h
+
 " Regular options
 
 set hidden
@@ -146,6 +162,7 @@ set foldmethod=syntax
 set foldlevelstart=999
 set confirm
 set updatetime=200
+set incsearch
 set inccommand=nosplit
 
 
