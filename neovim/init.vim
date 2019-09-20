@@ -67,6 +67,8 @@ autocmd FileType nerdtree
 			\ nnoremap <buffer> o :call NERDTreeExecFile()<CR><CR><CR>|
 			\ nnoremap <buffer> O :call NERDTreeExecFile()<CR><Home>explorer /select,<CR><CR>
 
+let delimitMate_expand_cr = 1
+
 " Plugin Keymaps
 
 map <C-c><C-r> :GoRename<CR>
