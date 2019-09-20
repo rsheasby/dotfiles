@@ -68,6 +68,7 @@ autocmd FileType nerdtree
 			\ nnoremap <buffer> O :call NERDTreeExecFile()<CR><Home>explorer /select,<CR><CR>
 
 let delimitMate_expand_cr = 1
+let g:dispatch_no_maps = 1
 
 " Plugin Keymaps
 
