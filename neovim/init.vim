@@ -37,7 +37,7 @@ let g:ale_lint_on_enter = 0
 autocmd BufRead * ALELint
 
 let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 0
+let g:go_fmt_fail_silently = 1
 
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
@@ -167,5 +167,4 @@ set confirm
 set updatetime=200
 set incsearch
 set inccommand=nosplit
-
 
