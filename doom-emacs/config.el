@@ -119,3 +119,19 @@
 ;; Add keymaps for commenting
 (map! :n "C-/" 'evilnc-comment-or-uncomment-lines)
 (map! :v "C-/" 'evilnc-comment-operator)
+
+;; Treemacs config
+(map! :nvo (kbd "C-p") 'treemacs-select-window)
+(map! :map evil-treemacs-state-map "<ESC>" #'evil-window-next)
+
+;; Configure avy (easymotion)
+(map! :nv (kbd "\\j") #'avy-goto-line-below)
+(map! :nv (kbd "\\k") #'avy-goto-line-above)
+(map! :nv (kbd "\\w") #'avy-goto-word-0-below)
+(map! :nv (kbd "\\b") #'avy-goto-word-0-above)
+(map! :nv (kbd "\\f") #'avy-goto-char-in-line)
+(map! :nv (kbd "\\s") #'avy-goto-char-2)
+
+;; Alt J/K for visual movement with word wrapping
+(map! :nv "M-j" #'evil-next-visual-line)
+(map! :nv "M-k" #'evil-previous-visual-line)
