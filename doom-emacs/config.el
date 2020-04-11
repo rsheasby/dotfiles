@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+(setq user-full-name "Ryan David Sheasby"
+      user-mail-address "ryan@sheasby.dev")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -19,12 +19,13 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "monospace" :size 14))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 14))
+
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-dracula)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -51,3 +52,70 @@
 ;;
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
+
+;; My additions:
+
+(setq scroll-margin 7)
+
+;; Add gopath to exec-path
+(setenv "PATH" (concat (getenv "PATH") ":~/go/bin"))
+(setq exec-path (append exec-path '("~/go/bin")))
+
+;; VIM Remaps:
+(map! :nv ";" #'evil-ex)
+(map! :nvo "-" #'evil-end-of-line)
+
+;; Set ivy to fuzzy searching
+(setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+
+;; Enable word wrap
+(setq-default truncate-lines nil)
+(setq word-wrap t)
+
+;; Restore Vim substitute key
+(after! evil-snipe
+  (evil-snipe-mode -1))
+
+;; Add remaps to move between buffers and kill them
+(map! :nvo "C-h" #'centaur-tabs-backward)
+(map! :nvo "C-l" #'centaur-tabs-forward)
+(map! :nvo "C-d" #'kill-current-buffer)
+
+;; Configure inertia plugin
+(use-package! inertial-scroll
+  :commands (
+             inertias-up
+             inertias-down
+             ))
+
+(setq inertias-initial-velocity 75)
+(setq inertias-friction 135)
+(setq inertias-update-time 10)
+(setq inertias-rest-coef 0.1)
+
+(map! :nv "C-j" #'inertias-up)
+(map! :nv "C-k" #'inertias-down)
+
+;; Enable undo history saving
+(setq undo-tree-auto-save-history t)
+
+;; Only use sytem clipboard when the leader key is used
+(setq-default select-enable-clipboard nil)
+
+(map! :nv (kbd "\\y") (lambda () (interactive)
+                       (evil-use-register ?+)
+                       (set--this-command-keys "y")
+                       (call-interactively 'evil-yank)
+                       ))
+(map! :nv (kbd "\\p") (lambda () (interactive)
+                       (evil-use-register ?+)
+                       (call-interactively 'evil-paste-after)
+                       ))
+(map! :nv (kbd "\\P") (lambda () (interactive)
+                       (evil-use-register ?+)
+                       (call-interactively 'evil-paste-before)
+                       ))
+
+;; Add keymaps for commenting
+(map! :n "C-/" 'evilnc-comment-or-uncomment-lines)
+(map! :v "C-/" 'evilnc-comment-operator)
