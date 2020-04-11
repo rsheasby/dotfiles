@@ -65,9 +65,6 @@
 (map! :nv ";" #'evil-ex)
 (map! :nvo "-" #'evil-end-of-line)
 
-;; Set ivy to fuzzy searching
-(setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
-
 ;; Enable word wrap
 (setq-default truncate-lines nil)
 (setq word-wrap t)
@@ -135,3 +132,11 @@
 ;; Alt J/K for visual movement with word wrapping
 (map! :nv "M-j" #'evil-next-visual-line)
 (map! :nv "M-k" #'evil-previous-visual-line)
+
+;; Go auto fix imports on save
+(add-hook! 'go-mode-hook (add-hook! 'before-save-hook :local 'gofmt-before-save))
+(setq gofmt-command "goimports")
+
+;; Fix projectile detection of go modules directory
+(after! projectile
+  (add-to-list 'projectile-project-root-files-bottom-up "go.mod"))
