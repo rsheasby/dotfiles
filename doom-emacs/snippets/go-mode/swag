@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: Swaggo Annotation
+# key: swag
+# --
+// @Summary ${1:Do a thing}
+// @ID ${2:do-thing}
+// @Accept ${3:json}
+// @Produce $3
+// @Param ${4:name} ${5:paramtype} ${6:datatype} ${7:required} "${8:comment}"
+// @Security ${9:AuthType}
+// @Success ${10:200} {${11:object}} ${12:package.StructType} "${13:Success}"
+// @Success ${14:204} "${15:Success}"
+// @Failure ${16:400} "${17:Bad Request}"
+// @Failure ${18:401} "${19:Unauthorised}"
+// @Router ${20:/resource/\{id\}} [${21:verb}]
