@@ -19,8 +19,8 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Fira Code" :size 14))
-(setq doom-big-font (font-spec :family "Fira Code" :size 20))
+(setq doom-font (font-spec :family "Hack" :size 14))
+(setq doom-big-font (font-spec :family "Hack" :size 20))
 
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -93,6 +93,16 @@
 
 (map! :nv "C-j" #'inertias-up)
 (map! :nv "C-k" #'inertias-down)
+
+;; Restore vim increment and decrement operators with C-a and C-A
+(use-package! evil-numbers
+  :commands (
+             evil-numbers/inc-at-pt
+             evil-numbers/dec-at-pt
+             ))
+
+(map! :nv "C-a" 'evil-numbers/inc-at-pt)
+(map! :nv "C-S-a" 'evil-numbers/dec-at-pt)
 
 ;; Enable undo history saving
 (setq undo-tree-auto-save-history t)
