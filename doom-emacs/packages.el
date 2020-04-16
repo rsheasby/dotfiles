@@ -52,4 +52,3 @@
 
 (package! inertial-scroll :recipe (:host github :repo "kiwanami/emacs-inertial-scroll"))
 (package! centaur-tabs)
-(package! evil-numbers)

@@ -95,12 +95,6 @@
 (map! :nv "C-k" #'inertias-down)
 
 ;; Restore vim increment and decrement operators with C-a and C-A
-(use-package! evil-numbers
-  :commands (
-             evil-numbers/inc-at-pt
-             evil-numbers/dec-at-pt
-             ))
-
 (map! :nv "C-a" 'evil-numbers/inc-at-pt)
 (map! :nv "C-S-a" 'evil-numbers/dec-at-pt)
 
