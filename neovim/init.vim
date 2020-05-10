@@ -11,36 +11,24 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-speeddating'
 
+Plug 'dhruvasagar/vim-prosession'
 Plug 'sheerun/vim-polyglot'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Raimondi/delimitMate'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'wellle/targets.vim'
-Plug 'dhruvasagar/vim-prosession'
 Plug 'airblade/vim-gitgutter'
-Plug 'moll/vim-bbye'
-Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Shougo/echodoc.vim'
 Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
 " Plugin Options
-
-let g:ale_lint_on_enter = 0
-autocmd BufRead * ALELint
-
-let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 1
-
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
 
 let g:echodoc#enable_at_startup = 1
 
@@ -51,6 +39,10 @@ colorscheme onedark
 let g:airline_theme='onedark'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+
+let g:prosession_last_session_dir = '/'
+
+" Plugin Keymaps
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -67,14 +59,9 @@ autocmd FileType nerdtree
 			\ nnoremap <buffer> o :call NERDTreeExecFile()<CR><CR><CR>|
 			\ nnoremap <buffer> O :call NERDTreeExecFile()<CR><Home>explorer /select,<CR><CR>
 
-let delimitMate_expand_cr = 1
-let g:dispatch_no_maps = 1
-
-" Plugin Keymaps
+map <C-p> :NERDTreeFocus<CR>
 
 map <C-c><C-r> :GoRename<CR>
-
-map <C-p> :NERDTreeFocus<CR>
 
 nnoremap <C-l> :bnext<CR>
 nnoremap <C-h> :bprev<CR>
@@ -153,7 +140,6 @@ set noshowmode
 set breakindent
 set mouse=a
 set number
-set relativenumber
 set linebreak
 set undofile
 set undodir=~/.vim/undodir
