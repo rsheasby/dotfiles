@@ -12,6 +12,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-speeddating'
 
 Plug 'dhruvasagar/vim-prosession'
+Plug 'burner/vim-svelte'
 Plug 'sheerun/vim-polyglot'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-airline/vim-airline-themes'
@@ -27,7 +28,6 @@ Plug 'Shougo/echodoc.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'moll/vim-bbye'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'evanleck/vim-svelte'
 
 call plug#end()
 
@@ -71,6 +71,8 @@ autocmd FileType nerdtree
 			\ nmap <buffer> <C-f> <ESC><C-f>|
 			\ nnoremap <buffer> o :call NERDTreeExecFile()<CR><CR><CR>|
 			\ nnoremap <buffer> O :call NERDTreeExecFile()<CR><Home>explorer /select,<CR><CR>
+
+nmap <silent> gd <Plug>(coc-definition)
 
 map <C-p> :NERDTreeFocus<CR>
 
