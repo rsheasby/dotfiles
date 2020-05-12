@@ -22,13 +22,26 @@ Plug 'Raimondi/delimitMate'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'wellle/targets.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'go'}
 Plug 'Shougo/echodoc.vim'
 Plug 'joshdick/onedark.vim'
+Plug 'moll/vim-bbye'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'evanleck/vim-svelte'
 
 call plug#end()
 
 " Plugin Options
+
+autocmd FileType svelte let b:coc_root_patterns = ['package.json']
+autocmd FileType typescript let b:coc_root_patterns = ['package.json']
+
+let g:go_code_completion_enabled = 0
+let g:go_fmt_fail_silently = 0
+let g:go_imports_autosave = 1
+let g:go_gopls_complete_unimported = 1
+
+command! -nargs=0 Format :call CocAction('format')
 
 let g:echodoc#enable_at_startup = 1
 
@@ -83,6 +96,8 @@ imap <silent><expr> <bs>
 			\ !search('\S','nbW',line('.')) ? (col('.') != 1 ? "\<C-U>" : "") .
 			\ "\<bs>" . (getline(line('.')-1) =~ '\S' ? "" : "\<C-F>") : '<Plug>delimitMateBS'
 
+inoremap <C-Space> <C-x><C-o>
+
 map - $
 
 vnoremap <A-j> gj
@@ -129,6 +144,8 @@ nnoremap <silent> <ESC> :noh<CR><ESC>
 
 nnoremap ` ~h
 
+nnoremap <F11> :Format<CR>
+
 " Regular options
 
 set hidden
@@ -153,4 +170,8 @@ set confirm
 set updatetime=200
 set incsearch
 set inccommand=nosplit
+set complete=
+set completeopt=menu,menuone,preview,noinsert,noselect
+set shortmess+=c
+set noshowmode
 
