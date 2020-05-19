@@ -12,14 +12,14 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-speeddating'
 
 Plug 'dhruvasagar/vim-prosession'
-Plug 'burner/vim-svelte'
+Plug 'evanleck/vim-svelte'
 Plug 'sheerun/vim-polyglot'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'wellle/targets.vim'
 Plug 'airblade/vim-gitgutter'
@@ -54,6 +54,8 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 let g:prosession_last_session_dir = '/'
+
+let g:airline#extensions#tabline#ignore_bufadd_pat = '!|defx|gundo|nerd_tree|startify|tagbar|undotree|vimfiler'
 
 " Plugin Keymaps
 
@@ -147,6 +149,9 @@ nnoremap <silent> <ESC> :noh<CR><ESC>
 nnoremap ` ~h
 
 nnoremap <F11> :Format<CR>
+
+map <S-h> <C-w>h
+map <S-l> <C-w>l
 
 " Regular options
 
