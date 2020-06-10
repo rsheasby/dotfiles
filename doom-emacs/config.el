@@ -146,3 +146,18 @@
 (after! projectile
   (add-to-list 'projectile-project-root-files-bottom-up "go.mod"))
 
+;; Remove tab binding to move through completion list
+(defun my/yas-next-field ()
+  "TODO"
+  (interactive)
+  (when (and
+         (bound-and-true-p yas-minor-mode)
+         (overlay-get yas--active-field-overlay 'yas--field))
+    (company-abort)
+    (yas-next-field)))
+
+(map!
+ :after company
+ :map company-active-map
+ "TAB" #'my/yas-next-field
+ [tab] #'my/yas-next-field)
