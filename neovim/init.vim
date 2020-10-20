@@ -167,7 +167,7 @@ set number
 set linebreak
 set undofile
 set undodir=~/.vim/undodir
-set backupdir=~/.vim/backups
+set backupdir=~/.vim/backupdir
 set ignorecase
 set smartcase
 set cursorline
