@@ -2,7 +2,8 @@
 
 if which "apt" > /dev/null; then
   echo "Debian-like system detected. Attempting to install required tools:"
-  sudo apt update && sudo apt install curl wget neovim-qt git docker.io nodejs golang -y
+  sudo apt update && sudo apt install curl wget fish neovim-qt git docker.io nodejs golang -y
+  sudo chsh -s $(which fish)
 fi
 
 ## Link dotfiles directories
@@ -16,7 +17,6 @@ mkdir -p ~/.vim/backupdir
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 nvim +PlugInstall +qall
-mkdir -p ~/.fonts
 
 ## Install Powerline Fonts
 git clone https://github.com/powerline/fonts.git --depth=1
