@@ -1,5 +1,10 @@
 #!/usr/bin/bash
 
+if which "apt" > /dev/null; then
+  echo "Debian-like system detected. Attempting to install required tools:"
+  sudo apt update && sudo apt install curl wget neovim-qt git docker.io nodejs golang -y
+fi
+
 ## Link dotfiles directories
 CWD=$(pwd)
 ln -s $CWD/neovim ~/.config/nvim
