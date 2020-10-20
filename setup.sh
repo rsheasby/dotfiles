@@ -6,6 +6,11 @@ if which "apt" > /dev/null; then
   sudo chsh -s $(which fish)
 fi
 
+curl -L https://oh-my.fish -o install.fish
+fish install.fish --noninteractive
+rm install.fish
+echo 'omf install agnoster' | fish
+
 ## Link dotfiles directories
 CWD=$(pwd)
 ln -s $CWD/neovim ~/.config/nvim
