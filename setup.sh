@@ -1,6 +1,6 @@
-#!/usr/bin/bash
+#!/bin/bash
 
-if which "apt" > /dev/null; then
+if test -f "/etc/debian_version"; then
   echo "Debian-like system detected. Attempting to install required tools:"
   sudo apt update && sudo apt install curl wget fish neovim-qt git docker.io nodejs golang -y
   sudo chsh -s $(which fish)
