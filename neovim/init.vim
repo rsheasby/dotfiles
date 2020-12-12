@@ -1,5 +1,5 @@
 " init.vim 2 electric boogaloo
-call plug#begin()
+call plug#begin("~/.nvim_plugged/")
 
 " Tim Pope bae
 Plug 'tpope/vim-dispatch'
@@ -11,9 +11,8 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-speeddating'
 
+" Misc
 Plug 'dhruvasagar/vim-prosession'
-Plug 'evanleck/vim-svelte'
-Plug 'sheerun/vim-polyglot'
 Plug 'easymotion/vim-easymotion'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
@@ -23,23 +22,50 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'wellle/targets.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'fatih/vim-go', { 'for': 'go'}
-Plug 'Shougo/echodoc.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'moll/vim-bbye'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Autocomplete
+Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/echodoc.vim'
+Plug 'ncm2/float-preview.nvim'
+
+" Language Support
+Plug 'sheerun/vim-polyglot'
+Plug 'SirVer/ultisnips'
+
+" Go
+Plug 'fatih/vim-go', { 'for': 'go'}
 
 call plug#end()
 
+" Vim-Go config
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 50
+call deoplete#custom#option('omni_patterns', { 'go': '\S\+' })
+let g:float_preview#docked = 0
+
+let g:go_fmt_command = "goimports"
+let g:go_autodetect_gopath = 1
+let g:go_list_type = "quickfix"
+let g:go_doc_popup_window = 1
+
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_generate_tags = 1
+
+augroup go
+  autocmd!
+
+  " Show tabs as 3 columns
+  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=3 shiftwidth=3
+
+augroup END
+
 " Plugin Options
-
-autocmd FileType svelte let b:coc_root_patterns = ['package.json']
-autocmd FileType typescript let b:coc_root_patterns = ['package.json']
-
-let g:go_code_completion_enabled = 0
-let g:go_fmt_fail_silently = 0
-let g:go_imports_autosave = 1
-let g:go_gopls_complete_unimported = 1
 
 command! -nargs=0 Format :call CocAction('format')
 
@@ -74,8 +100,6 @@ autocmd FileType nerdtree
 			\ nnoremap <buffer> o :call NERDTreeExecFile()<CR><CR><CR>|
 			\ nnoremap <buffer> O :call NERDTreeExecFile()<CR><Home>explorer /select,<CR><CR>
 
-nmap <silent> gd <Plug>(coc-definition)
-
 map <C-p> :NERDTreeFocus<CR>
 
 map <C-c><C-r> :GoRename<CR>
@@ -86,19 +110,21 @@ nnoremap <C-h> :bprev<CR>
 map <Leader> <Plug>(easymotion-prefix)
 
 let g:comfortable_motion_no_default_key_mappings = 1
-nnoremap <silent> <C-j> :call comfortable_motion#flick(100)<CR>
-nnoremap <silent> <C-k> :call comfortable_motion#flick(-100)<CR>
+nnoremap <silent> <C-j> :call comfortable_motion#flick(120)<CR>
+nnoremap <silent> <C-k> :call comfortable_motion#flick(-120)<CR>
 
-let g:comfortable_motion_friction = 120.0
+let g:comfortable_motion_friction = 140.0
 let g:comfortable_motion_air_drag = 2.0
 
 " Regular Keymaps
 
-imap <silent><expr> <bs>
-			\ (&indentexpr isnot '' ? &indentkeys : &cinkeys) =~? '!\^F' &&
-			\ &backspace =~? '.*eol\&.*start\&.*indent\&' &&
-			\ !search('\S','nbW',line('.')) ? (col('.') != 1 ? "\<C-U>" : "") .
-			\ "\<bs>" . (getline(line('.')-1) =~ '\S' ? "" : "\<C-F>") : '<Plug>delimitMateBS'
+" Hungry backspace
+let g:AutoPairsMapBS = 0
+inoremap <silent> <expr> <bs>
+	\ (&indentexpr isnot '' ? &indentkeys : &cinkeys) =~? '!\^F' &&
+	\ &backspace =~? '.*eol\&.*start\&.*indent\&' &&
+	\ !search('\S','nbW',line('.')) ? (col('.') != 1 ? "\<C-U>" : "") .
+	\ "\<bs>" . (getline(line('.')-1) =~ '\S' ? "" : "\<C-F>") : '<C-R>=AutoPairsDelete()<CR>'
 
 inoremap <C-Space> <C-x><C-o>
 
@@ -178,7 +204,6 @@ set updatetime=200
 set incsearch
 set inccommand=nosplit
 set complete=
-set completeopt=menu,menuone,preview,noinsert,noselect
+set completeopt=menu,menuone,noinsert,noselect
 set shortmess+=c
 set noshowmode
-
