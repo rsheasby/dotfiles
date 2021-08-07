@@ -11,6 +11,7 @@ Plug 'tpope/vim-speeddating'
 
 " Customization
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline-themes'
@@ -23,8 +24,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'wellle/targets.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'dhruvasagar/vim-prosession'
 
 " Language Support/IDE Features
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -33,6 +32,9 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'ray-x/lsp_signature.nvim'
 
+" Load session after all other plugins
+Plug 'dhruvasagar/vim-prosession'
+
 call plug#end()
 
 " Customization
@@ -40,10 +42,30 @@ set background=dark
 colorscheme palenight
 set completeopt=menuone,noselect
 set termguicolors
+set updatetime=100
+set confirm
+set hidden
+set scrolloff=7
+set noexpandtab
+set shiftwidth=3
+set tabstop=3
+set breakindent
+set mouse=a
+set number
+set linebreak
+set undofile
+set undodir=~/.vim/undodir
+set backupdir=~/.vim/backupdir
+set ignorecase
+set smartcase
+set cursorline
+set foldmethod=syntax
+set foldlevelstart=999
+set incsearch
+set inccommand=nosplit
+set noshowmode
 
 " Plugin Configs
-let g:prosession_last_session_dir = '/'
-
 let g:compe = {}
 let g:compe.enabled = v:true
 let g:compe.autocomplete = v:true
@@ -90,10 +112,6 @@ nnoremap <silent>gr :Lspsaga rename<CR>
 
 map <Leader> <Plug>(easymotion-prefix)
 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd FileType nerdtree
 			\ nnoremap <buffer> <ESC> <C-w><C-w>|
@@ -104,6 +122,7 @@ autocmd FileType nerdtree
 			\ nmap <buffer> <C-f> <ESC><C-f>|
 			\ nnoremap <buffer> o :call NERDTreeExecFile()<CR><CR><CR>|
 			\ nnoremap <buffer> O :call NERDTreeExecFile()<CR><Home>explorer /select,<CR><CR>
+autocmd VimLeave * NERDTreeClose
 
 map <C-p> :NERDTreeFocus<CR>
 
@@ -111,8 +130,49 @@ nnoremap <silent> <C-j> :call comfortable_motion#flick(120)<CR>
 nnoremap <silent> <C-k> :call comfortable_motion#flick(-120)<CR>
 
 " Regular maps
-nnoremap <C-l> :bnext<CR>
-nnoremap <C-h> :bprev<CR>
+map - $
+
+nmap ; :
+
+vnoremap <A-j> gj
+vnoremap <A-k> gk
+nnoremap <A-j> gj
+nnoremap <A-k> gk
+
+vnoremap <leader>y  "+y
+nnoremap <leader>Y  "+yg_
+nnoremap <leader>y  "+y
+
+vnoremap <leader>d  "+d
+nnoremap <leader>D  "+D
+nnoremap <leader>d  "+d
+
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
+imap <D-v> <C-r>*
+
+nnoremap < <<
+nnoremap > >>
+vnoremap < <gv
+vnoremap > >gv
+
+vmap <C-/> gcgv
+nmap <C-/> gcc
+
+nnoremap <C-h> :BufferPrevious<CR>
+nnoremap <C-l> :BufferNext<CR>
+nnoremap <C-d> :BufferClose<CR>
+
+nnoremap <silent> <ESC> :noh<CR><ESC>
+
+nmap <SPACE>fs :w<CR>
+nmap <SPACE>qq :qa<CR>
+nmap <SPACE>qw :q<CR>
+
+nmap <SPACE>fr :%s/
 
 " Lua Configs
 lua << EOF
@@ -155,3 +215,7 @@ require "lsp_signature".setup()
 require('nvim-autopairs').setup{}
 
 EOF
+
+" Load session last
+let g:prosession_last_session_dir = '/'
+
