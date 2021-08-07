@@ -24,12 +24,14 @@ Plug 'easymotion/vim-easymotion'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'wellle/targets.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'kdheepak/lazygit.nvim'
 
-" Language Support/IDE Features
+" Language Support/Autocomplete
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
-Plug 'glepnir/lspsaga.nvim'
+" Plug 'glepnir/lspsaga.nvim'
+Plug 'jasonrhansen/lspsaga.nvim', {'branch': 'finder-preview-fixes'}
 Plug 'ray-x/lsp_signature.nvim'
 
 " Load session after all other plugins
@@ -76,9 +78,9 @@ let g:compe.throttle_time = 80
 let g:compe.source_timeout = 200
 let g:compe.resolve_timeout = 800
 let g:compe.incomplete_delay = 400
-let g:compe.max_abbr_width = 100
-let g:compe.max_kind_width = 100
-let g:compe.max_menu_width = 100
+let g:compe.max_abbr_width = 200
+let g:compe.max_kind_width = 200
+let g:compe.max_menu_width = 200
 let g:compe.documentation = v:true
 
 let g:compe.source = {}
@@ -96,8 +98,11 @@ let g:comfortable_motion_no_default_key_mappings = 1
 let g:comfortable_motion_friction = 140.0
 let g:comfortable_motion_air_drag = 2.0
 
-" Plugin maps
+let g:lazygit_floating_window_use_plenary = 0
+let g:lazygit_floating_window_winblend = 5
+let g:lazygit_use_neovim_remote = 0
 
+" Plugin maps
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm(luaeval("require 'nvim-autopairs'.autopairs_cr()"))
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
@@ -106,9 +111,11 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 nnoremap <silent>gh :Lspsaga lsp_finder<CR>
 nnoremap <silent>K :Lspsaga hover_doc<CR>
-nnoremap <silent><leader>ca :Lspsaga code_action<CR>
-vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>
+nnoremap <silent><SPACE>ca :Lspsaga code_action<CR>
+vnoremap <silent><SPACE>ca :<C-U>Lspsaga range_code_action<CR>
 nnoremap <silent>gr :Lspsaga rename<CR>
+
+nnoremap <silent> <SPACE>gg :LazyGit<CR>
 
 map <Leader> <Plug>(easymotion-prefix)
 
