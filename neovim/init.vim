@@ -8,14 +8,14 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-fugitive'
 
 " Customization
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-airline/vim-airline'
+Plug 'shadmansaleh/lualine.nvim'
 
 " Editor Behaviour
 Plug 'windwp/nvim-autopairs'
@@ -121,14 +121,14 @@ map <Leader> <Plug>(easymotion-prefix)
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd FileType nerdtree
-			\ nnoremap <buffer> <ESC> <C-w><C-w>|
-			\ nmap <buffer> <C-p> <ESC>|
-			\ nmap <buffer> <C-h> <ESC><C-h>|
-			\ nmap <buffer> <C-l> <ESC><C-l>|
-			\ nmap <buffer> <C-d> <ESC><C-d>|
-			\ nmap <buffer> <C-f> <ESC><C-f>|
-			\ nnoremap <buffer> o :call NERDTreeExecFile()<CR><CR><CR>|
-			\ nnoremap <buffer> O :call NERDTreeExecFile()<CR><Home>explorer /select,<CR><CR>
+	\ nnoremap <buffer> <ESC> <C-w><C-w>|
+	\ nmap <buffer> <C-p> <ESC>|
+	\ nmap <buffer> <C-h> <ESC><C-h>|
+	\ nmap <buffer> <C-l> <ESC><C-l>|
+	\ nmap <buffer> <C-d> <ESC><C-d>|
+	\ nmap <buffer> <C-f> <ESC><C-f>|
+	\ nnoremap <buffer> o :call NERDTreeExecFile()<CR><CR><CR>|
+	\ nnoremap <buffer> O :call NERDTreeExecFile()<CR><Home>explorer /select,<CR><CR>
 autocmd VimLeave * NERDTreeClose
 
 map <C-p> :NERDTreeFocus<CR>
@@ -137,6 +137,9 @@ nnoremap <silent> <C-j> :call comfortable_motion#flick(120)<CR>
 nnoremap <silent> <C-k> :call comfortable_motion#flick(-120)<CR>
 
 " Regular maps
+imap <C-j> <C-n>
+imap <C-k> <C-p>
+
 map - $
 
 nmap ; :
@@ -188,38 +191,76 @@ lua << EOF
 require'lspconfig'.gopls.setup{}
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
-  ignore_install = { },
-  highlight = {
-    enable = true,
-    disable = { },
-    additional_vim_regex_highlighting = false,
-  },
+	ensure_installed = "maintained",
+	ignore_install = { },
+	highlight = {
+		enable = true,
+		disable = { },
+		additional_vim_regex_highlighting = false,
+	},
 }
 
 local saga = require 'lspsaga'
 saga.init_lsp_saga {
-  error_sign = 'X',
-  warn_sign = '!',
-  hint_sign = '#',
-  infor_sign = '?',
-  border_style = "round",
-  finder_action_keys = {
-    open = {'<CR>', 'o'}, vsplit = 's',split = 'i',quit = {'q', '<esc>', '<C-c>'},
-    scroll_down = '<C-f>',scroll_up = '<C-b>'
-  },
-  code_action_keys = {
-    quit = {'q', '<esc>', '<C-c>'}, exec = '<CR>'
-  },
-  rename_action_keys = {
-    quit = {'<esc>', '<C-c>'}, exec = '<CR>'
-  },
+	error_sign = 'X',
+	warn_sign = '!',
+	hint_sign = '#',
+	infor_sign = '?',
+	border_style = "round",
+	finder_action_keys = {
+		open = {'<CR>', 'o'}, vsplit = 's',split = 'i',quit = {'q', '<esc>', '<C-c>'},
+		scroll_down = '<C-f>',scroll_up = '<C-b>'
+	},
+	code_action_keys = {
+		quit = {'q', '<esc>', '<C-c>'}, exec = '<CR>'
+	},
+	rename_action_keys = {
+		quit = {'<esc>', '<C-c>'}, exec = '<CR>'
+	},
 }
 
 require "lsp_signature".setup()
 
 -- Editor Behaviour
 require('nvim-autopairs').setup{}
+
+require'lualine'.setup {
+	options = {
+		icons_enabled = true,
+		theme = 'onedark',
+		component_separators = {'|', '|'},
+		section_separators = {'', ''},
+		disabled_filetypes = {}
+	},
+	sections = {
+		lualine_a = {'mode'},
+		lualine_b = {
+			'branch',
+			{
+				'diff',
+				colored = true,
+				color_added = '#8BBD73',
+				color_modified = '#C46CD6',
+				color_removed = '#E2606D',
+				symbols = {added = '+', modified = '~', removed = '-'}
+			}
+		},
+		lualine_d = {'filename'},
+		lualine_x = {'encoding', 'fileformat', 'filetype'},
+		lualine_y = {'progress'},
+		lualine_z = {'location'}
+	},
+	inactive_sections = {
+		lualine_a = {'filename'},
+		lualine_b = {},
+		lualine_c = {},
+		lualine_x = {},
+		lualine_y = {},
+		lualine_z = {}
+	},
+	tabline = {},
+	extensions = {}
+}
 
 EOF
 
