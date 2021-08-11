@@ -5,7 +5,7 @@ mkdir -p ~/.vim/undodir
 mkdir -p ~/.vim/backupdir
 
 ## Setup Lazygit
-mkdir -p ~/Library/Application Support/jesseduffield/
+mkdir -p ~/Library/Application\ Support/jesseduffield/
 
 ## Delete existing symlinks if they exist
 rm -f ~/.config/nvim
