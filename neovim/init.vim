@@ -184,6 +184,8 @@ nmap <SPACE>qw :q<CR>
 
 nmap <SPACE>fr :%s/
 
+nnoremap <SPACE>gf mg:%!gofmt -s<CR>'gzz
+
 " Lua Configs
 lua << EOF
 
