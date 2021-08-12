@@ -61,7 +61,7 @@ set backupdir=~/.vim/backupdir
 set ignorecase
 set smartcase
 set cursorline
-set foldmethod=syntax
+set foldmethod=indent
 set foldlevelstart=999
 set incsearch
 set inccommand=nosplit
