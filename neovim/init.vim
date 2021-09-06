@@ -33,6 +33,7 @@ Plug 'hrsh7th/nvim-compe'
 " Plug 'glepnir/lspsaga.nvim'
 Plug 'jasonrhansen/lspsaga.nvim', {'branch': 'finder-preview-fixes'}
 Plug 'ray-x/lsp_signature.nvim'
+Plug 'darrikonn/vim-gofmt'
 
 " Load session after all other plugins
 Plug 'dhruvasagar/vim-prosession'
@@ -137,6 +138,8 @@ nnoremap <silent> <C-j> :call comfortable_motion#flick(120)<CR>
 nnoremap <silent> <C-k> :call comfortable_motion#flick(-120)<CR>
 
 " Regular maps
+autocmd BufWritePre *.go GoFmt
+
 imap <C-j> <C-n>
 imap <C-k> <C-p>
 
@@ -184,7 +187,7 @@ nmap <SPACE>qw :q<CR>
 
 nmap <SPACE>fr :%s/
 
-nnoremap <SPACE>gf mg:%!gofmt -s<CR>'gzz
+nnoremap <SPACE>gf :GoFmt<CR>
 
 " Lua Configs
 lua << EOF
