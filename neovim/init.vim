@@ -241,9 +241,15 @@ require'lualine'.setup {
 			{
 				'diff',
 				colored = true,
-				color_added = '#8BBD73',
-				color_modified = '#C46CD6',
-				color_removed = '#E2606D',
+				color_added = {
+					fg = '#8BBD73'
+				},
+				color_modified = {
+					fg = '#C46CD6'
+				},
+				color_removed = {
+					fg = '#E2606D'
+				},
 				symbols = {added = '+', modified = '~', removed = '-'}
 			}
 		},
