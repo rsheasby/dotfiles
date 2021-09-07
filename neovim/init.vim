@@ -145,7 +145,7 @@ imap <C-k> <C-p>
 
 map - $
 
-nmap ; :
+map ; :
 
 vnoremap <A-j> gj
 vnoremap <A-k> gk
