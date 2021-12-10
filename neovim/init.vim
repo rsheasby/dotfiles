@@ -31,9 +31,12 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 " Plug 'glepnir/lspsaga.nvim'
-Plug 'jasonrhansen/lspsaga.nvim', {'branch': 'finder-preview-fixes'}
+Plug 'tami5/lspsaga.nvim'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'darrikonn/vim-gofmt'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
 
 " Load session after all other plugins
 Plug 'dhruvasagar/vim-prosession'
@@ -194,6 +197,7 @@ lua << EOF
 
 -- LSP Configs
 require'lspconfig'.gopls.setup{}
+require'lspconfig'.svelte.setup{}
 
 require'nvim-treesitter.configs'.setup {
 	ensure_installed = "maintained",
