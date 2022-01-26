@@ -121,7 +121,9 @@ nnoremap <silent> <C-j> :call comfortable_motion#flick(120)<CR>
 nnoremap <silent> <C-k> :call comfortable_motion#flick(-120)<CR>
 
 " Regular maps
+
 autocmd BufWritePre *.go GoFmt
+autocmd BufWritePre *.go LspRestart
 
 imap <C-j> <C-n>
 imap <C-k> <C-p>
