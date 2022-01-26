@@ -15,7 +15,7 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'airblade/vim-gitgutter'
-Plug 'shadmansaleh/lualine.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 
 " Editor Behaviour
 Plug 'windwp/nvim-autopairs'
@@ -36,6 +36,7 @@ Plug 'hrsh7th/cmp-calc'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/cmp-cmdline'
 Plug 'tami5/lspsaga.nvim'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'darrikonn/vim-gofmt'
@@ -204,7 +205,7 @@ cmp.setup({
  },
  sources = cmp.config.sources({
 	{ name = 'nvim_lsp' },
-	-- { name = 'vsnip' }, -- For vsnip users.
+	{ name = 'vsnip' }, -- For vsnip users.
 	-- { name = 'luasnip' }, -- For luasnip users.
 	-- { name = 'ultisnips' }, -- For ultisnips users.
 	-- { name = 'snippy' }, -- For snippy users.
